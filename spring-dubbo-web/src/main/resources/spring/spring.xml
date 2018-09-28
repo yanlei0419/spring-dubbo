@@ -11,16 +11,17 @@
                         http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
 					    ">
 	<context:annotation-config />  
-	<context:component-scan base-package="org.seeker.controller" >
+	<context:component-scan base-package="org.seeker" >
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
-	</context:component-scan>
-	<context:component-scan base-package="org.seeker.common"  >
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Component"/>
 	</context:component-scan>
 
 
 	 <!-- 注解驱动 -->
 	<mvc:annotation-driven />
+
+	<import resource="/dubbo/spring-consumer.xml"/>
+	<import resource="/dubbo/dubbo-consumer.xml"/>
 
 
 </beans>

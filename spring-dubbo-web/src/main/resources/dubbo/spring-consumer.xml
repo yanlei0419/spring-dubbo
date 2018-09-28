@@ -15,5 +15,4 @@
     <!-- 消费方用什么协议获取服务（用dubbo协议在20880端口暴露服务） -->
     <dubbo:protocol port="28080"/>
     <!-- 提供哪些接口给消费者调用 -->
-    <dubbo:reference id="userService" interface="com.chanshuyi.service.IUserService"/>
 </beans>

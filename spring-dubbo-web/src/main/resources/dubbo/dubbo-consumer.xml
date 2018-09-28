@@ -5,8 +5,13 @@
        xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd http://code.alibabatech.com/schema/dubbo
-        http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+    ">
 
     <!-- 调用哪些服务 -->
-    <dubbo:reference id="userService" interface="com.chanshuyi.service.IUserService"/>
+    <dubbo:reference  interface="org.seeker.service.GroupService" id="groupService"/>
+    <dubbo:reference  interface="org.seeker.service.MenuService" id="menuService"/>
+    <dubbo:reference  interface="org.seeker.service.SysLogService" id="sysLogService"/>
+    <dubbo:reference  interface="org.seeker.service.UserService" id="userService"/>
+
 </beans>

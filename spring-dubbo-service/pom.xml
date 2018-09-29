@@ -180,10 +180,76 @@
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>org.apache.curator</groupId>
+            <artifactId>curator-framework</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.curator</groupId>
+            <artifactId>curator-recipes</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.zookeeper</groupId>
+            <artifactId>zookeeper</artifactId>
+        </dependency>
+
+
+
+
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <scope>test</scope>
         </dependency>
     </dependencies>
+    <profiles>
+        <profile>
+            <id>sqlite</id>
+            <properties>
+                <!--EL表达式变量   ${env}-->
+                <env>sqlite</env>
+                <profiles.active>sqlite</profiles.active>
+            </properties>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+        <profile>
+            <id>ora</id>
+            <properties>
+                <env>ora</env>
+            </properties>
+        </profile>
+    </profiles>
+
+
+    <build>
+        <finalName>spring-mybatis-web</finalName>
+        <!--资源文件-->
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <!-- 资源根目录排除各环境的配置，防止在生成目录中多余其它目录 -->
+                <excludes>
+                    <exclude>ve/**</exclude>
+                </excludes>
+            </resource>
+            <resource>
+                <directory>src/main/resources/ve/${env}</directory>
+                <includes>
+                    <include>jdbc.properties</include>
+                </includes>
+                <targetPath>.</targetPath>
+            </resource>
+            <resource>
+                <directory>src/main/resources/ve/${env}/mapper</directory>
+                <includes>
+                    <include>**/**.xml</include>
+                </includes>
+                <!--上面文件输出的位置-->
+                <targetPath>mybatis/mapper/</targetPath>
+            </resource>
+        </resources>
+    </build>
 </project>

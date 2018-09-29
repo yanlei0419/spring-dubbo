@@ -9,9 +9,9 @@
         ">
 
     <!-- 声明需要暴露的服务接口 -->
-    <dubbo:service timeout="3000" interface="org.seeker.service.impl.GroupServiceImpl" ref="groupService"/>
-    <dubbo:service timeout="3000" interface="org.seeker.service.impl.MenuServiceImpl" ref="menuService"/>
-    <dubbo:service timeout="3000" interface="org.seeker.service.impl.SysLogServiceImpl" ref="sysLogService"/>
-    <dubbo:service timeout="3000" interface="org.seeker.service.impl.UserServiceImpl" ref="userService"/>
+    <dubbo:service timeout="3000" interface="org.seeker.service.GroupService" ref="groupService"/>
+    <dubbo:service timeout="3000" interface="org.seeker.service.MenuService" ref="menuService"/>
+    <dubbo:service timeout="3000" interface="org.seeker.service.SysLogService" ref="sysLogService"/>
+    <dubbo:service timeout="3000" interface="org.seeker.service.UserService" ref="userService"/>
 
 </beans>

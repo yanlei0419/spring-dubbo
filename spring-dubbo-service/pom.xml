@@ -209,20 +209,28 @@
     </dependencies>
     <profiles>
         <profile>
-            <id>sqlite</id>
+            <id>wsqlite</id>
             <properties>
                 <!--EL表达式变量   ${env}-->
                 <env>sqlite</env>
-                <profiles.active>sqlite</profiles.active>
+                <db.file>${env}/wsqlite</db.file>
             </properties>
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
         </profile>
         <profile>
+            <id>hsqlite</id>
+            <properties>
+                <env>sqlite</env>
+                <db.file>${env}/hsqlite</db.file>
+            </properties>
+        </profile>
+        <profile>
             <id>ora</id>
             <properties>
                 <env>ora</env>
+                <db.file>${env}</db.file>
             </properties>
         </profile>
     </profiles>
@@ -250,7 +258,7 @@
                 <targetPath>assembly/</targetPath>
             </resource>
             <resource>
-                <directory>src/main/resources/ve/${env}</directory>
+                <directory>src/main/resources/ve/${db.file}</directory>
                 <includes>
                     <include>jdbc.properties</include>
                 </includes>
@@ -360,9 +368,8 @@
                     </execution>
                 </executions>
             </plugin>
-
-
-
         </plugins>
+
     </build>
+
 </project>

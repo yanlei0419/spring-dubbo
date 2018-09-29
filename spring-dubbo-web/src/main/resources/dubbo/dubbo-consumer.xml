@@ -9,9 +9,10 @@
     ">
 
     <!-- 调用哪些服务 -->
-    <dubbo:reference  interface="org.seeker.service.GroupService" id="groupService"/>
-    <dubbo:reference  interface="org.seeker.service.MenuService" id="menuService"/>
-    <dubbo:reference  interface="org.seeker.service.SysLogService" id="sysLogService"/>
-    <dubbo:reference  interface="org.seeker.service.UserService" id="userService"/>
+    <!--check="false" 启动服务不需要验证-->
+    <dubbo:reference  interface="org.seeker.service.GroupService" check="false" id="groupService"/>
+    <dubbo:reference  interface="org.seeker.service.MenuService" check="false" id="menuService"/>
+    <dubbo:reference  interface="org.seeker.service.SysLogService" check="false" id="sysLogService"/>
+    <dubbo:reference  interface="org.seeker.service.UserService" check="false" id="userService"/>
 
 </beans>

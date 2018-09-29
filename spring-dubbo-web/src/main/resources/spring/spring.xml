@@ -20,8 +20,8 @@
 	 <!-- 注解驱动 -->
 	<mvc:annotation-driven />
 
-	<import resource="/dubbo/spring-consumer.xml"/>
-	<import resource="/dubbo/dubbo-consumer.xml"/>
+	<import resource="classpath:dubbo/spring-consumer.xml"/>
+	<import resource="classpath:dubbo/dubbo-consumer.xml"/>
 
 
 </beans>

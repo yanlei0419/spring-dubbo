@@ -11,6 +11,10 @@
 
     <artifactId>spring-dubbo-service</artifactId>
 
+    <properties>
+        <project.name>${project.artifactId}</project.name>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.seeker</groupId>
@@ -225,22 +229,31 @@
 
 
     <build>
-        <finalName>spring-mybatis-web</finalName>
+        <finalName>spring-dubbo-service</finalName>
         <!--资源文件-->
         <resources>
             <resource>
+                <!--是否覆盖-->
                 <directory>src/main/resources</directory>
-                <!-- 资源根目录排除各环境的配置，防止在生成目录中多余其它目录 -->
+                <!--上面文件输出的位置-->
                 <excludes>
                     <exclude>ve/**</exclude>
                 </excludes>
+            </resource>
+            <resource>
+                <!--是否覆盖-->
+                <filtering>false</filtering>
+                <directory>src/main/resources/assembly</directory>
+                <includes>
+                    <include>assembly.xml</include>
+                </includes>
+                <targetPath>assembly/</targetPath>
             </resource>
             <resource>
                 <directory>src/main/resources/ve/${env}</directory>
                 <includes>
                     <include>jdbc.properties</include>
                 </includes>
-                <targetPath>.</targetPath>
             </resource>
             <resource>
                 <directory>src/main/resources/ve/${env}/mapper</directory>
@@ -250,6 +263,106 @@
                 <!--上面文件输出的位置-->
                 <targetPath>mybatis/mapper/</targetPath>
             </resource>
+
         </resources>
+
+        <plugins>
+            <!--打包插件-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.0.2</version>
+                <configuration>
+                    <classesDirectory>target/classes/</classesDirectory>
+                    <archive>
+                        <manifest>
+                            <mainClass>com.alibaba.dubbo.container.Main</mainClass>
+                            <!-- 打包时 MANIFEST.MF文件不记录的时间戳版本 -->
+                            <useUniqueVersions>false</useUniqueVersions>
+                            <addClasspath>true</addClasspath>
+                            <classpathPrefix>lib/</classpathPrefix>
+                        </manifest>
+                        <manifestEntries>
+                            <Class-Path>.</Class-Path>
+                        </manifestEntries>
+                    </archive>
+                </configuration>
+            </plugin>
+            <!--复制依赖jar插件-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>copy</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <includeScope>compile</includeScope>
+                            <outputDirectory>${basedir}/target/lib</outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+
+            <!--更新配置文件-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version>1.8</version>
+                <executions>
+                    <execution>
+                        <id>copy</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <tasks>
+                                <!--复制文件到todir目录 overwrite 是否覆盖-->
+                                <copy todir="target/assembly" overwrite="true">
+                                    <!--复制文件操作源文件-->
+                                    <fileSet dir="src/main/resources/assembly" >
+                                        <include name="assembly.xml"/>
+                                    </fileSet>
+                                </copy>
+                                <!--替换file 文件中   变量名为token  字符串   编译 不起作用 -->
+                                <replace file="target/assembly/assembly.xml" token="@jar.name@" value="${project.artifactId}" />
+                            </tasks>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>2.3</version>
+                <configuration>
+                    <!--打包文件名称-->
+                    <finalName>${project.artifactId}-${project.version}</finalName>
+                    <!--打包后输出路径-->
+                    <outputDirectory>${project.parent.build.directory}</outputDirectory>
+                    <appendAssemblyId>false</appendAssemblyId>
+                    <descriptors>
+                        <descriptor>target/assembly/assembly.xml</descriptor>
+                    </descriptors>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>make-assembly</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+
+
+        </plugins>
     </build>
 </project>

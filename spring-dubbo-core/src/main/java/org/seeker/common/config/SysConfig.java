@@ -2,6 +2,8 @@ package org.seeker.common.config;
 
 import java.io.InputStream;
 import java.util.Properties;
+
+import org.seeker.common.util.JacksonUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -52,6 +54,9 @@ public class SysConfig extends Properties {
 	 */
 	public static String get(String key){
 		return prop.getProperty(key);
+	}
+	public static void main(String[] args) {
+		System.out.println(JacksonUtil.encode(prop));
 	}
 
 }

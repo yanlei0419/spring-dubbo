@@ -29,7 +29,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 //		)  
 @ImportResource("classpath:spring/spring.xml")
 @Configuration
-@PropertySource({"classpath:/log4j.properties"})
+//@PropertySource({"classpath:/log4j.properties"})
 @Controller
 public class SpringRootConfig {
 

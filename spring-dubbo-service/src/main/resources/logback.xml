@@ -13,6 +13,8 @@
     <!--<property name="log_dir" value="/home/hadmin/data/logs/src" />-->
     <!-- 日志最大的历史 30天 -->
     <property name="maxHistory" value="30" />
+    <property name="maxFileSize" value="20MB" />
+    <property name="charset" value="UTF-8" />
 
     <!-- ConsoleAppender 控制台输出日志 -->
     <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
@@ -21,6 +23,7 @@
                 <!-- 设置日志输出格式 -->
                 %d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %logger - %msg%n
             </pattern>
+            <charset>${charset}</charset>
         </encoder>
     </appender>
 
@@ -51,6 +54,8 @@
                 <!-- 设置日志输出格式 -->
                 %d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %logger - %msg%n
             </pattern>
+            <!--文件字符集-->
+            <charset>${charset}</charset>
         </encoder>
     </appender>
 
@@ -73,6 +78,7 @@
         </rollingPolicy>
         <encoder>
             <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %logger - %msg%n</pattern>
+            <charset>${charset}</charset>
         </encoder>
     </appender>
 
@@ -89,6 +95,7 @@
         </rollingPolicy>
         <encoder>
             <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %logger - %msg%n</pattern>
+            <charset>${charset}</charset>
         </encoder>
     </appender>
 
@@ -105,6 +112,7 @@
         </rollingPolicy>
         <encoder>
             <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %logger - %msg%n</pattern>
+            <charset>${charset}</charset>
         </encoder>
     </appender>
 
@@ -121,6 +129,7 @@
         </rollingPolicy>
         <encoder>
             <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %logger - %msg%n</pattern>
+            <charset>${charset}</charset>
         </encoder>
     </appender>
 

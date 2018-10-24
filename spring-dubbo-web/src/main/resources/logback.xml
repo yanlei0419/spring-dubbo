@@ -78,7 +78,6 @@
             <fileNamePattern>${log_dir}/warn/%d{yyyy-MM-dd}/warn-log.%i.log</fileNamePattern>
             <maxHistory>${maxHistory}</maxHistory>
             <!--按maxFileSize分割文件大小-->
-            <ti
             <maxFileSize>${maxFileSize}</maxFileSize>
         </rollingPolicy>
         <encoder>

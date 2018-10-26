@@ -46,10 +46,10 @@
 	     <!--&lt;!&ndash;合并SQL统计 例如select * from table t where t.id =1，会被变为select * from table t where t.id =？来统计  &ndash;&gt;	-->
 	    <!--<property name="mergeSql" value="true" />-->
 	<!--</bean>  -->
-	<bean id="log-filter" class="com.alibaba.druid.filter.logging.Log4jFilter">  
-	    <property name="statementExecutableSqlLogEnable" value="true" />  
-	    <property name="resultSetLogEnabled" value="false" />  
-	</bean>  
+	<!--<bean id="log-filter" class="com.alibaba.druid.filter.logging.Log4jFilter">  -->
+	    <!--<property name="statementExecutableSqlLogEnable" value="true" />  -->
+	    <!--<property name="resultSetLogEnabled" value="false" />  -->
+	<!--</bean>  -->
 <!-- 	<bean id="wall-filter-config" class="com.alibaba.druid.wall.WallConfig"   init-method="init">   -->
 <!-- 	    指定配置装载的目录   -->
 <!-- 	    <property name="dir" value="META-INF/druid/wall/oracle" />   -->
@@ -91,13 +91,13 @@
 <!-- 		<property name="connectionInitSqls" 				value="select 1  from dual" /> -->
 		
 		 <!-- 配置监控统计拦截的filters，去掉后监控界面sql无法统计 -->  
-		    <property name="proxyFilters">  
-		        <list>  
+		    <!--<property name="proxyFilters">  -->
+		        <!--<list>  -->
 		            <!--<ref bean="stat-filter" />  -->
-		            <ref bean="log-filter" />  
+		            <!--<ref bean="log-filter" />  -->
 <!-- 		            <ref bean="wall-filter" />   -->
-		        </list>  
-		    </property>  
+		        <!--</list>  -->
+		    <!--</property>  -->
 	</bean>
 
 	<!-- spring和MyBatis完美整合，不需要mybatis的配置映射文件 -->

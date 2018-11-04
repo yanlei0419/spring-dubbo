@@ -19,9 +19,13 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/frame/js/text/text-overflow.js"></script>
 	
 	<style>
-		a {behavior: url(${pageContext.request.contextPath}/frame/js/method/focus.htc)}
-		.categoryitems span {width: 160px;}
-		 .arrowlistmenu .menuheader {
+		a {
+			behavior: url(${pageContext.request.contextPath}/frame/js/method/focus.htc)
+		}
+		.categoryitems span {
+			width: 160px;
+		}
+		.arrowlistmenu .menuheader {
 			color: #03509e;
 			background: white url(${pageContext.request.contextPath}/frame/skins/sky/tab/titlebar.jpg) repeat-x center left;
 			padding: 4px 0 4px 10px;
